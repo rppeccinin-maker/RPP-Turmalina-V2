@@ -1,5 +1,3 @@
---- START OF FILE index.html ---
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -26,88 +24,51 @@
             --shimmer-color: linear-gradient(to right, transparent, rgba(0,0,0,0.04), transparent);
             --nav-bg: rgba(255,255,255,0.95); --primary: #000000; --danger: #d70015; --success: #248a3d;
         }
-        
-        /* ANIMAÇÃO PRIVACIDADE */
         .hidden-value { position: relative; color: transparent !important; transition: all 0.4s ease; filter: blur(12px); opacity: 0.3; }
         body.is-visible .hidden-value { color: inherit !important; filter: blur(0); opacity: 1; }
-        
-        /* AJUSTE VISUAL OLHO */
         .eye-slash { display: block; }
         body.is-visible .eye-slash { display: none; }
-
-        /* CORES DE COMPARAÇÃO */
         .text-green { color: var(--success) !important; }
         .text-red { color: var(--danger) !important; }
-
-        /* BOTÃO WHATSAPP */
-        .btn-share-extrato {
-            background: #25D366;
-            color: white !important;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.6rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            transition: 0.3s;
-        }
-        .btn-share-extrato:active { transform: scale(0.95); background: #1eb954; }
-        
+        .btn-share-extrato { background: #25D366; color: white !important; border: none; padding: 8px 16px; border-radius: 20px; font-size: 0.6rem; font-weight: 800; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; gap: 5px; transition: 0.3s; }
         #confirm-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 5000; display: none; align-items: center; justify-content: center; padding: 20px; }
         .confirm-card { background: var(--bg-card); border: 1px solid var(--border); padding: 25px; border-radius: 16px; width: 100%; max-width: 300px; text-align: center; }
-        
         @keyframes shine { 0% { transform: translateX(-150%) skewX(-25deg); } 30% { transform: translateX(150%) skewX(-25deg); } 100% { transform: translateX(150%) skewX(-25deg); } }
         .shimmer { position: relative; overflow: hidden; }
         .shimmer::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--shimmer-color); animation: shine 10s infinite ease-in-out; }
-        
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
         body { background-color: var(--bg-app); color: var(--text-main); padding-bottom: 120px; transition: 0.3s; overflow-x: hidden; }
-        
         #toast-container { position: fixed; top: 30px; left: 50%; transform: translateX(-50%); z-index: 10000; width: 90%; max-width: 320px; pointer-events: none; }
         .toast { background: var(--bg-card); color: var(--text-main); padding: 14px 20px; border-radius: 8px; border: 1px solid var(--border); border-left: 4px solid var(--primary); font-size: 0.7rem; font-weight: 800; text-transform: uppercase; text-align: center; animation: toastIn 0.3s forwards; }
         @keyframes toastIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-        
         .app-header { background: var(--bg-app); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; padding: 20px; display: flex; justify-content: space-between; align-items: center; }
         .logo-rpp { font-family: 'Orbitron', sans-serif; font-size: 2.2rem; font-weight: 900; line-height: 1; color: var(--text-main); letter-spacing: -1px; }
-        
         .dashboard-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 20px; }
         .stat-card { background: var(--bg-card); padding: 20px; border-radius: var(--radius-lg); border: 1px solid var(--border); position: relative; overflow: hidden; }
         .stat-card span { font-size: 0.55rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; display: block; margin-bottom: 4px; }
         .stat-card div { font-size: 1rem; font-weight: 800; }
         .cmp-tag { font-size: 0.65rem; font-weight: 800; margin-top: 6px; display: block; }
-        
         .category-wrapper { margin-bottom: 15px; border-radius: var(--radius-lg); border: 1px solid var(--border); background: var(--bg-card); overflow: hidden; }
         .category-cover { padding: 18px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
         .category-info h2 { font-size: 0.8rem; font-weight: 800; text-transform: uppercase; }
         .category-status { font-size: 0.55rem; font-weight: 800; border: 1px solid var(--border); padding: 4px 10px; border-radius: 4px; color: var(--text-muted); text-transform: uppercase; }
         .category-content { background: var(--bg-inner); padding: 0; max-height: 0; overflow: hidden; transition: 0.4s ease-out; }
         .category-wrapper.active .category-content { max-height: 3000px; padding: 15px; border-top: 1px solid var(--border); }
-        
         .main-card { background: var(--bg-card); border-radius: var(--radius-lg); padding: 15px; border: 1px solid var(--border); margin-bottom: 15px; position: relative; }
         .btn { padding: 14px; border-radius: 10px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; text-transform: uppercase; font-size: 0.65rem; width: 100%; border: 1px solid var(--border); margin-bottom: 10px; background: var(--bg-card); color: var(--text-main); }
-        
         .history-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border); cursor: pointer; font-size: 0.75rem; }
         .stone-check { font-size: 1.2rem; font-weight: 900; transition: 0.3s; cursor: pointer; color: var(--border); }
         .stone-check.active { color: var(--success); text-shadow: 0 0 10px var(--success); }
-        
         .bottom-nav { position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%); width: 95%; max-width: 500px; height: 65px; background: var(--nav-bg); backdrop-filter: blur(15px); border: 1px solid var(--border); border-radius: 12px; display: flex; justify-content: space-around; align-items: center; z-index: 1000; }
         .nav-item { color: var(--text-muted); font-size: 0.5rem; font-weight: 800; display: flex; flex-direction: column; align-items: center; gap: 4px; text-transform: uppercase; cursor: pointer; flex: 1; transition: 0.2s; }
         .nav-item.active { color: var(--text-main); }
-        
         .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); z-index: 2000; display:none; align-items: flex-end; }
         .modal-sheet { background: var(--bg-card); width: 100%; border-radius: 20px 20px 0 0; padding: 30px 20px; max-height: 85vh; border-top: 1px solid var(--border); overflow-y: auto; }
         input, select { width: 100%; padding: 14px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg-inner); color: var(--text-main); font-weight: 600; margin-bottom: 12px; outline: none; font-size: 0.85rem; }
-        
         .proj-card { background: var(--bg-inner); padding: 15px; border-radius: 12px; border: 1px solid var(--border); margin-bottom: 10px; }
         .proj-row { display: flex; justify-content: space-between; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; margin-top: 4px; }
-        
         .content-section { display: none; padding-top: 10px; }
         .content-section.active { display: block; }
-        
         .card-input-wrapper { position: relative; display: flex; align-items: center; }
         .scan-btn { position: absolute; left: 12px; color: var(--text-muted); cursor: pointer; z-index: 10; display: flex; align-items: center; }
         .brand-icon-slot { position: absolute; right: 12px; font-size: 1.1rem; }
@@ -280,64 +241,27 @@
     const safeMath = (n) => Math.round((n + Number.EPSILON) * 100) / 100;
     const parseNum = (v) => { let n = parseFloat(v); return isNaN(n) ? 0 : safeMath(n); };
     const STORAGE_KEY = 'FIN_RPP_V48_LAST';
-
     let db = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
-    function blindarDB() {
-        if (!db.fixed_accounts) db.fixed_accounts = []; if (!db.parcelamentos) db.parcelamentos = [];
-        if (!db.cards) db.cards = []; if (!db.meses_dados) db.meses_dados = {}; if (!db.theme) db.theme = 'dark';
-        if (db.startHidden === undefined) db.startHidden = false;
-    }
-
+    function blindarDB() { if (!db.fixed_accounts) db.fixed_accounts = []; if (!db.parcelamentos) db.parcelamentos = []; if (!db.cards) db.cards = []; if (!db.meses_dados) db.meses_dados = {}; if (!db.theme) db.theme = 'dark'; if (db.startHidden === undefined) db.startHidden = false; }
     const meses = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
     const mSel = document.getElementById('month-selector'), ySel = document.getElementById('year-selector');
     meses.forEach((m, i) => { mSel.innerHTML += `<option value="${i}" ${i === new Date().getMonth() ? 'selected' : ''}>${m.toUpperCase()}</option>`; });
     [2024, 2025, 2026, 2027].forEach(y => { ySel.innerHTML += `<option value="${y}" ${y === new Date().getFullYear() ? 'selected' : ''}>${y}</option>`; });
-
     function customConfirm(msg, callback) { document.getElementById('confirm-text').innerText = msg; document.getElementById('confirm-overlay').style.display = 'flex'; document.getElementById('confirm-yes-btn').onclick = () => { callback(); cancelCustomConfirm(); }; }
     function cancelCustomConfirm() { document.getElementById('confirm-overlay').style.display = 'none'; }
-
-    function toggleStartHidden() {
-        db.startHidden = !db.startHidden;
-        save();
-        document.getElementById('start-hidden-btn').innerText = `INICIAR EM MODO OCULTO: ${db.startHidden ? 'SIM' : 'NÃO'}`;
-        showToast(db.startHidden ? "Ativado" : "Desativado");
-    }
-
-    function checkStartupSecurity() { 
-        // Apenas controla o modo oculto inicial
-        if(db.startHidden) {
-            document.body.classList.remove('is-visible');
-        } else {
-            document.body.classList.add('is-visible');
-        }
-    }
-
+    function toggleStartHidden() { db.startHidden = !db.startHidden; save(); document.getElementById('start-hidden-btn').innerText = `INICIAR EM MODO OCULTO: ${db.startHidden ? 'SIM' : 'NÃO'}`; showToast(db.startHidden ? "Ativado" : "Desativado"); }
+    function checkStartupSecurity() { if(db.startHidden) { document.body.classList.remove('is-visible'); } else { document.body.classList.add('is-visible'); } }
     let streamRef = null;
     function startScanner() { const overlay = document.getElementById('camera-overlay'), video = document.getElementById('camera-stream'); overlay.style.display = 'flex'; navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).then(s => { streamRef = s; video.srcObject = s; }).catch(() => { showToast("Erro câmera", "error"); stopScanner(); }); }
     function stopScanner() { if(streamRef) streamRef.getTracks().forEach(t => t.stop()); document.getElementById('camera-overlay').style.display = 'none'; }
     function getCardBrand(num) { num = num.replace(/\s/g, ''); if (/^4/.test(num)) return "💳 VISA"; if (/^5[1-5]/.test(num)) return "🛡️ MASTER"; if (/^3[47]/.test(num)) return "🏦 AMEX"; if (/^6(?:011|5)/.test(num)) return "🟠 ELO"; return ""; }
     function handleCardInput(el) { let v = el.value.replace(/\D/g, ''); v = v.replace(/(\d{4})(?=\d)/g, '$1 '); el.value = v; document.getElementById('brand-icon-card').innerText = getCardBrand(v); }
     function handleExpiryInput(el) { let v = el.value.replace(/\D/g, ''); if (v.length >= 2) v = v.substring(0,2) + '/' + v.substring(2,4); el.value = v; }
-
     function showToast(msg, type = 'success') { const container = document.getElementById('toast-container'), toast = document.createElement('div'); toast.className = `toast ${type}`; toast.innerText = msg; container.appendChild(toast); setTimeout(() => { toast.remove(); }, 2500); }
-
-    function shareWhatsApp(p) { 
-        const d = cachedPersonData[p]; 
-        if (!d) return; 
-        let txt = `*EXTRATO - ${p.toUpperCase()}*\n\n`; 
-        d.itens.forEach(i => { 
-            txt += `${i.nome} - R$ ${i.valor.toFixed(2).replace('.', ',')}${i.pago ? ' ✓' : ''}\n`; 
-        }); 
-        txt += `\n*TOTAL: R$ ${d.total.toFixed(2).replace('.', ',')}*`; 
-        window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(txt)}`, '_blank'); 
-    }
-
+    function shareWhatsApp(p) { const d = cachedPersonData[p]; if (!d) return; let txt = `*EXTRATO - ${p.toUpperCase()}*\n\n`; d.itens.forEach(i => { txt += `${i.nome} - R$ ${i.valor.toFixed(2).replace('.', ',')}${i.pago ? ' ✓' : ''}\n`; }); txt += `\n*TOTAL: R$ ${d.total.toFixed(2).replace('.', ',')}*`; window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(txt)}`, '_blank'); }
     function getStatsForMonth(m, y) { const key = `${m}_${y}`, data = db.meses_dados[key] || {}, abs = y * 12 + m; let tI = 0, tE = 0; (data.recebidos || []).forEach(r => tI += r.val); db.fixed_accounts.forEach(acc => { if (data.paid?.[acc.id]) tE += parseNum(data.fixed?.[acc.id] || 0); }); db.parcelamentos.forEach(p => { const s = p.startY * 12 + p.startM, end = s + p.qtd - 1; if (abs >= s && abs <= end) tE += p.val; }); (data.variaveis || []).forEach(v => tE += v.val); return { income: tI, expense: tE, balance: tI - tE }; }
-
     function processAutoDebits() { const today = new Date(), curD = today.getDate(), curM = today.getMonth(), curY = today.getFullYear(), curK = `${curM}_${curY}`; if (!db.meses_dados[curK]) db.meses_dados[curK] = { fixed: {}, paid: {}, recebidos: [], variaveis: [] }; db.fixed_accounts.forEach(acc => { if (acc.auto && parseInt(acc.d) <= curD) { if (!db.meses_dados[curK].paid[acc.id]) db.meses_dados[curK].paid[acc.id] = true; } }); }
-
     function save() { localStorage.setItem(STORAGE_KEY, JSON.stringify(db)); render(); }
-
     let cachedPersonData = {};
     function render() {
         blindarDB(); applyTheme();
@@ -347,13 +271,10 @@
         const pm = curM === 0 ? 11 : curM - 1, py = curM === 0 ? curY - 1 : curY;
         const prevStats = getStatsForMonth(pm, py);
         const data = db.meses_dados[curK] || { fixed:{}, paid:{}, recebidos:[], variaveis:[] };
-        
         const lInc = document.getElementById('list-income'), lFix = document.getElementById('list-fixed'), lPar = document.getElementById('list-parcel'), lVar = document.getElementById('list-variable');
         lInc.innerHTML = lFix.innerHTML = lPar.innerHTML = lVar.innerHTML = '';
-
         const listC = document.getElementById('list-cards-config'); if(listC) listC.innerHTML = '';
         db.cards.forEach(c => { if(listC) listC.innerHTML += `<div class="proj-card" style="padding:15px; margin-bottom:10px"><div><div style="font-weight:800; font-size: 0.8rem;">${c.label}</div><div style="font-size:0.55rem; color:var(--text-muted)">**** ${String(c.number || '').slice(-4)}</div></div><div style="color:var(--danger); font-size:0.55rem; cursor:pointer; font-weight: 800;" onclick="customConfirm('Remover Cartão?', () => { db.cards=db.cards.filter(x=>x.id!=${c.id});save(); })">REMOVER</div></div>`; });
-
         db.fixed_accounts.forEach(acc => {
             const v = parseNum(data.fixed?.[acc.id] ?? 0), isP = !!data.paid?.[acc.id], r = acc.r || 'Casa';
             if(!perS[r]) perS[r] = { f:0, p:0 }; if(!isP) perS[r].f = safeMath(perS[r].f + v);
@@ -362,7 +283,6 @@
             if(r === 'Casa') { tF_O += v; if(isP) tF_P += v; }
             lFix.innerHTML += `<div class="history-item" onclick="openEdit(${acc.id},'fixed')"><span>${isP?'<span style="color:var(--success)">✓ </span>':''}${acc.d} - ${acc.n}</span><span>R$ ${v.toFixed(2)}</span></div>`;
         });
-
         db.parcelamentos.forEach(p => {
             const s = p.startY * 12 + p.startM, end = s + p.qtd - 1;
             if(curAbs >= s && curAbs <= end) {
@@ -376,45 +296,27 @@
                 lPar.innerHTML += `<div class="history-item" onclick="openEdit(${p.id},'parcela')"><div>${p.desc} (${n}/${p.qtd})<br><small style="color:var(--text-muted);font-weight:800;text-transform:uppercase;font-size:0.5rem">${p.resp}</small></div><span>R$ ${p.val.toFixed(2)}</span></div>`;
             }
         });
-
         (data.recebidos || []).forEach(r => { tI += r.val; lInc.innerHTML += `<div class="history-item" onclick="openEdit(${r.id},'income')"><span>${r.desc}</span><span>R$ ${r.val.toFixed(2)}</span></div>`; });
         (data.variaveis || []).forEach(v => { tV += v.val; if(!cachedPersonData["Casa"]) cachedPersonData["Casa"] = { total:0, itens:[] }; cachedPersonData["Casa"].itens.push({ tipo: "Var", nome: v.desc, valor: v.val }); lVar.innerHTML += `<div class="history-item" onclick="openEdit(${v.id},'variavel')"><span>${v.desc}</span><span>R$ ${v.val.toFixed(2)}</span></div>`; });
-
         const tEf = safeMath(tF_P + tV), salG = tI - tEf;
         document.getElementById('stat-inc').innerText = `R$ ${tI.toFixed(2)}`;
         document.getElementById('stat-exp').innerText = `R$ ${tEf.toFixed(2)}`;
         document.getElementById('stat-bal').innerText = `R$ ${salG.toFixed(2)}`;
-
-        const createCmp = (curr, prev, inv = false) => {
-            if (prev === 0) return ''; const diff = ((curr - prev) / prev) * 100;
-            const isGood = inv ? diff < 0 : diff > 0;
-            return `<span class="cmp-tag ${isGood ? 'text-green' : 'text-red'}">${diff > 0 ? '▲' : '▼'} ${Math.abs(diff).toFixed(0)}%</span>`;
-        };
+        const createCmp = (curr, prev, inv = false) => { if (prev === 0) return ''; const diff = ((curr - prev) / prev) * 100; const isGood = inv ? diff < 0 : diff > 0; return `<span class="cmp-tag ${isGood ? 'text-green' : 'text-red'}">${diff > 0 ? '▲' : '▼'} ${Math.abs(diff).toFixed(0)}%</span>`; };
         document.getElementById('cmp-inc').innerHTML = createCmp(tI, prevStats.income);
         document.getElementById('cmp-exp').innerHTML = createCmp(tEf, prevStats.expense, true);
         document.getElementById('cmp-bal').innerHTML = createCmp(salG, prevStats.balance);
-
         const pA = document.getElementById('tabelas-por-pessoa'); pA.innerHTML = '';
-        for (let n in perS) { 
-            if(n === 'Casa') continue; 
-            const isP = !!data.resp_parcelas_paid?.[n], totalP = safeMath((perS[n].f || 0) + (perS[n].p || 0));
-            cachedPersonData[n].total = totalP;
-            pA.innerHTML += `<div class="main-card shimmer" style="padding:15px; cursor:pointer" onclick="abrirDetalhes('${n}')"><div style="font-weight:900; font-size:0.8rem; margin-bottom:12px; color:var(--text-main)">${n.toUpperCase()}</div><div style="display:flex; justify-content:space-between; align-items:center; background:var(--bg-inner); padding:8px; border-radius:4px; margin-bottom:8px" onclick="event.stopPropagation();"><span style="font-size:0.45rem; color:var(--text-muted); font-weight:800">LIQUIDADO</span><div class="stone-check ${isP ? 'active' : ''}" onclick="updatePaidStatus('${n}', ${!isP})">✓</div></div><div style="font-weight:900; display:flex; justify-content:space-between; border-top:1px solid var(--border); padding-top:8px; font-size:0.85rem"><span>R$</span><span>${totalP.toFixed(2).replace('.',',')}</span></div></div>`; 
-        }
+        for (let n in perS) { if(n === 'Casa') continue; const isP = !!data.resp_parcelas_paid?.[n], totalP = safeMath((perS[n].f || 0) + (perS[n].p || 0)); cachedPersonData[n].total = totalP; pA.innerHTML += `<div class="main-card shimmer" style="padding:15px; cursor:pointer" onclick="abrirDetalhes('${n}')"><div style="font-weight:900; font-size:0.8rem; margin-bottom:12px; color:var(--text-main)">${n.toUpperCase()}</div><div style="display:flex; justify-content:space-between; align-items:center; background:var(--bg-inner); padding:8px; border-radius:4px; margin-bottom:8px" onclick="event.stopPropagation();"><span style="font-size:0.45rem; color:var(--text-muted); font-weight:800">LIQUIDADO</span><div class="stone-check ${isP ? 'active' : ''}" onclick="updatePaidStatus('${n}', ${!isP})">✓</div></div><div style="font-weight:900; display:flex; justify-content:space-between; border-top:1px solid var(--border); padding-top:8px; font-size:0.85rem"><span>R$</span><span>${totalP.toFixed(2).replace('.',',')}</span></div></div>`; }
         const lCS = document.getElementById('faturas-cartoes'); lCS.innerHTML = '';
         db.cards.forEach(c => { lCS.innerHTML += `<div class="history-item"><span>${c.label}</span><span>R$ ${(cInv[c.id] || 0).toFixed(2)}</span></div>`; });
-
         const tFalC = safeMath((tF_O + tV) - tEf);
         document.getElementById('resumo-casa-container').innerHTML = `<div class="main-card shimmer" onclick="abrirDetalhes('Casa')" style="padding:15px; cursor:pointer; border-left:none"><div style="font-weight:900; font-size:0.8rem; margin-bottom:12px; color:var(--text-main)">CASA</div><div style="font-size:0.8rem; display:flex; justify-content:space-between; color:var(--success); margin-bottom:4px"><span>Já Pago</span><span>R$ ${tEf.toFixed(2)}</span></div><div style="font-size:0.8rem; display:flex; justify-content:space-between; color:var(--danger); margin-bottom:8px"><span>Pendente</span><span>R$ ${tFalC.toFixed(2)}</span></div><div style="font-weight:900; display:flex; justify-content:space-between; border-top:1px solid var(--border); padding-top:8px; font-size:0.85rem"><span>R$</span><span>${safeMath(tF_O+tV).toFixed(2).replace('.',',')}</span></div></div>`;
         cachedPersonData["Casa"].total = safeMath(tF_O+tV);
         renderProjection(tI);
-        
-        document.getElementById('start-hidden-btn').innerText = `INICIAR EM MODO OCULTO: ${db.startHidden ? 'SIM' : 'NÃO'}`;
     }
-
     function renderProjection(incomeBase) { const curM = parseInt(mSel.value), curY = parseInt(ySel.value), list = document.getElementById('list-projection'); if(!list) return; list.innerHTML = ''; for(let i=1; i<=12; i++) { let m = curM + i, y = curY; if(m > 11) { m -= 12; y++; } let exp = 0; db.fixed_accounts.forEach(acc => { exp += parseNum(db.meses_dados[`${curM}_${curY}`]?.fixed?.[acc.id] || 0); }); db.parcelamentos.forEach(p => { const s = p.startY * 12 + p.startM, e = s + p.qtd - 1; if((y*12+m) >= s && (y*12+m) <= e) exp += p.val; }); const sal = incomeBase - exp; list.innerHTML += `<div class="proj-card"><div style="border-bottom:1px solid var(--border); padding-bottom:8px; margin-bottom:8px"><span style="font-weight:900; font-size:0.75rem">${meses[m].toUpperCase()} ${y}</span></div><div class="proj-row"><span>Ganhos Est.:</span><span style="color:var(--success)">R$ ${incomeBase.toFixed(2)}</span></div><div class="proj-row"><span>Gastos Proj.:</span><span style="color:var(--danger)">R$ ${exp.toFixed(2)}</span></div><div class="proj-row" style="margin-top:8px; border-top:1px dashed var(--border); padding-top:8px; font-size:0.75rem"><span>Saldo Prev.:</span><span style="color:${sal>=0?'var(--success)':'var(--danger)'}">R$ ${sal.toFixed(2)}</span></div></div>`; } }
-    function openEdit(id, type) { const k = `${mSel.value}_${ySel.value}`, dataM = db.meses_dados[k] || {}; document.getElementById('edit-id').value = id; document.getElementById('edit-type').value = type; const autoCont = document.getElementById('edit-auto-container'), statusContainer = document.getElementById('status-container-fixed'); autoCont.style.display = (type === 'fixed') ? 'flex' : 'none'; statusContainer.style.display = (type === 'fixed') ? 'block' : 'none'; let d='', v=0, r='Casa', au=false; if(type === 'fixed') { const i = db.fixed_accounts.find(x => x.id == id); d = i?.n; v = dataM.fixed?.[id] || 0; r = i?.r; au = i?.auto; const isP = !!dataM.paid?.[id], pBtn = document.getElementById('modal-pay-btn'); pBtn.innerText = isP ? "DESMARCAR PAGAMENTO" : "MARCAR COMO PAGO"; pBtn.style.color = isP ? "var(--danger)" : "var(--success)"; pBtn.style.borderColor = isP ? "var(--danger)" : "var(--success)"; pBtn.onclick = () => { if(!db.meses_dados[k]) db.meses_dados[k]={paid:{}}; db.meses_dados[k].paid[id]=!isP; save(); closeModals(); showToast("Salvo!"); }; document.getElementById('modal-agenda-btn').onclick = () => { window.open(`https://www.google.com/calendar/render?action=TEMPLATE&text=PAGAR:+${encodeURIComponent(d)}&dates=${ySel.value}${String(parseInt(mSel.value)+1).padStart(2,'0')}${String(i?.d).padStart(2,'0')}/${ySel.value}${String(parseInt(mSel.value)+1).padStart(2,'0')}${String(i?.d).padStart(2,'0')}`, '_blank'); }; document.getElementById('edit-auto').checked = au; } else if(type==='variavel'){ const i=dataM.variaveis.find(x=>x.id==id); d=i?.desc; v=i?.val; } else if(type==='parcela'){ const i=db.parcelamentos.find(x=>x.id==id); d=i?.desc; v=i?.val; r=i?.resp; } else if(type==='income'){ const i=db.meses_dados[k].recebidos.find(x=>x.id==id); d=i?.desc; v=i?.val; } document.getElementById('edit-desc').value=d; document.getElementById('edit-val').value=v; document.getElementById('edit-resp').value=r;
-    document.getElementById('btn-del-global').onclick = () => customConfirm("Excluir este item?", () => deleteGlobal()); document.getElementById('modal-edit').style.display='flex'; }
+    function openEdit(id, type) { const k = `${mSel.value}_${ySel.value}`, dataM = db.meses_dados[k] || {}; document.getElementById('edit-id').value = id; document.getElementById('edit-type').value = type; const autoCont = document.getElementById('edit-auto-container'), statusContainer = document.getElementById('status-container-fixed'); autoCont.style.display = (type === 'fixed') ? 'flex' : 'none'; statusContainer.style.display = (type === 'fixed') ? 'block' : 'none'; let d='', v=0, r='Casa', au=false; if(type === 'fixed') { const i = db.fixed_accounts.find(x => x.id == id); d = i?.n; v = dataM.fixed?.[id] || 0; r = i?.r; au = i?.auto; const isP = !!dataM.paid?.[id], pBtn = document.getElementById('modal-pay-btn'); pBtn.innerText = isP ? "DESMARCAR PAGAMENTO" : "MARCAR COMO PAGO"; pBtn.style.color = isP ? "var(--danger)" : "var(--success)"; pBtn.style.borderColor = isP ? "var(--danger)" : "var(--success)"; pBtn.onclick = () => { if(!db.meses_dados[k]) db.meses_dados[k]={paid:{}}; db.meses_dados[k].paid[id]=!isP; save(); closeModals(); showToast("Salvo!"); }; document.getElementById('modal-agenda-btn').onclick = () => { window.open(`https://www.google.com/calendar/render?action=TEMPLATE&text=PAGAR:+${encodeURIComponent(d)}&dates=${ySel.value}${String(parseInt(mSel.value)+1).padStart(2,'0')}${String(i?.d).padStart(2,'0')}/${ySel.value}${String(parseInt(mSel.value)+1).padStart(2,'0')}${String(i?.d).padStart(2,'0')}`, '_blank'); }; document.getElementById('edit-auto').checked = au; } else if(type==='variavel'){ const i=dataM.variaveis.find(x=>x.id==id); d=i?.desc; v=i?.val; } else if(type==='parcela'){ const i=db.parcelamentos.find(x=>x.id==id); d=i?.desc; v=i?.val; r=i?.resp; } else if(type==='income'){ const i=db.meses_dados[k].recebidos.find(x=>x.id==id); d=i?.desc; v=i?.val; } document.getElementById('edit-desc').value=d; document.getElementById('edit-val').value=v; document.getElementById('edit-resp').value=r; document.getElementById('btn-del-global').onclick = () => customConfirm("Excluir este item?", () => deleteGlobal()); document.getElementById('modal-edit').style.display='flex'; }
     function addCard() { const l=document.getElementById('card-label').value.trim(), n=document.getElementById('card-number').value.replace(/\s/g, ''); if(!l || !n) return; db.cards.push({ id: Date.now(), label: l, number: n, close: parseInt(document.getElementById('card-close').value) || 1 }); save(); closeModals(); showToast("Cartão Salvo!"); }
     function addParcelamento() { const de=document.getElementById('p-desc').value, va=parseNum(document.getElementById('p-val').value), q=parseInt(document.getElementById('p-qtd').value)||1, r=document.getElementById('p-resp').value || 'Casa', cid=document.getElementById('p-card-select').value; if(!de || !q) return; db.parcelamentos.push({ id: Date.now(), desc: de, val: va, qtd: q, startM: parseInt(mSel.value), startY: parseInt(ySel.value), resp: r, cardId: cid }); save(); showToast("Parcelas Salvas!"); closeModals(); }
     function addFixedAccount() { const d=document.getElementById('f-dia').value, n=document.getElementById('f-desc').value, r=document.getElementById('f-resp').value || 'Casa', au=document.getElementById('f-auto').checked; if(!n) return; db.fixed_accounts.push({id:Date.now(), d, n, r, auto:au}); save(); showToast("Conta Fixa Criada!"); closeModals(); }
@@ -434,17 +336,19 @@
     function applyTheme() { if(db.theme==='light') { document.body.classList.add('light-mode'); document.getElementById('theme-btn').innerText='MODO ESCURO'; } else { document.body.classList.remove('light-mode'); document.getElementById('theme-btn').innerText='MODO CLARO'; } }
     function exportarDados() { const a=document.createElement('a'); a.href='data:text/json;charset=utf-8,'+encodeURIComponent(JSON.stringify(db)); a.download='backup_rpp.json'; a.click(); }
     function importarDados(e) { const r=new FileReader(); r.onload=(ev)=>{ try{ const i=JSON.parse(ev.target.result); if(i.meses_dados){db=i; save(); location.reload();} }catch(err){} }; r.readAsText(e.target.files[0]); }
-    
     history.pushState(null, null, location.href); window.onpopstate = function () { const now = Date.now(); if (now - bck < 2000) { window.close(); } else { bck = now; showToast("Voltar novamente para sair", "error"); history.pushState(null, null, location.href); } };
     let bck = 0; applyTheme(); processAutoDebits(); render(); checkStartupSecurity();
-    // Adicione isso na última linha antes do </script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js')
-      .then(reg => console.log('Service Worker registrado!'))
-      .catch(err => console.log('Erro ao registrar SW', err));
-  });
-}
+
+    // REGISTRO DO MODO OFFLINE (SERVICE WORKER)
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').then(reg => {
+          console.log('App pronto para uso offline!');
+        }).catch(err => {
+          console.log('Falha no modo offline', err);
+        });
+      });
+    }
 </script>
 </body>
 </html>
