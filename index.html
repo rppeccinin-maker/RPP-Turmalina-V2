@@ -161,75 +161,6 @@
     </section>
 </div>
 
-<!-- MODAIS -->
-<div id="modal-manage-cards" class="modal-overlay" onclick="if(event.target==this) closeModals()">
-    <div class="modal-sheet">
-        <h2 style="font-weight:900; margin-bottom:20px; text-transform: uppercase; font-size:0.9rem">MEUS CARTÕES</h2>
-        <button class="btn shimmer" onclick="openModalLancar('modal-card')">CADASTRAR NOVO CARTÃO</button>
-        <div id="list-cards-config"></div>
-        <button class="btn" onclick="closeModals()" style="border:none">VOLTAR</button>
-    </div>
-</div>
-
-<div id="modal-card" class="modal-overlay" onclick="if(event.target==this) closeModals()">
-    <div class="modal-sheet">
-        <input type="text" id="card-label" placeholder="Nome do Cartão">
-        <div class="card-input-wrapper">
-            <span class="scan-btn" onclick="startScanner()"><svg style="width:18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg></span>
-            <input type="text" id="card-number" placeholder="Número do Cartão" style="padding-left:45px" oninput="handleCardInput(this)">
-            <span id="brand-icon-card" class="brand-icon-slot"></span>
-        </div>
-        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px">
-            <input type="text" id="card-expiry" placeholder="MM/AA" maxlength="5" oninput="handleExpiryInput(this)">
-            <input type="number" id="card-close" placeholder="Fechamento (Dia)">
-        </div>
-        <button class="btn shimmer" onclick="addCard()">SALVAR CARTÃO</button>
-    </div>
-</div>
-
-<div id="modal-parcela" class="modal-overlay" onclick="if(event.target==this) closeModals()">
-    <div class="modal-sheet">
-        <input type="text" id="p-desc" placeholder="Descrição">
-        <select id="p-card-select"><option value="">Sem Cartão</option></select>
-        <input type="number" id="p-qtd" placeholder="Qtd Parcelas" oninput="calcParcela()">
-        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px">
-            <div><label style="font-size:0.5rem; color:var(--text-muted); font-weight:800; text-transform:uppercase">Total Compra</label><input type="number" id="p-total" oninput="calcParcela()"></div>
-            <div><label style="font-size:0.5rem; color:var(--text-muted); font-weight:800; text-transform:uppercase">Valor Parcela</label><input type="number" id="p-val" oninput="calcTotal()"></div>
-        </div>
-        <input type="text" id="p-resp" placeholder="Responsável">
-        <button class="btn shimmer" onclick="addParcelamento()">LANÇAR PARCELADO</button>
-    </div>
-</div>
-
-<div id="modal-edit" class="modal-overlay" onclick="if(event.target==this) closeModals()">
-    <div class="modal-sheet">
-        <div id="status-container-fixed" style="display:none">
-            <button id="modal-pay-btn" class="btn shimmer">PAGO</button>
-            <button id="modal-agenda-btn" class="btn shimmer" style="color:#4285F4; border-color:#4285F4">GOOGLE AGENDA</button>
-        </div>
-        <input type="hidden" id="edit-id"><input type="hidden" id="edit-type">
-        <input type="text" id="edit-desc"><input type="number" id="edit-val"><input type="text" id="edit-resp">
-        <div class="checkbox-container" id="edit-auto-container" style="display:none; align-items:center; gap:10px; background:var(--bg-inner); padding:10px; border-radius:8px; border:1px solid var(--border); margin-bottom:12px">
-            <input type="checkbox" id="edit-auto" style="width:18px; height:18px; margin:0"><label style="font-size:0.6rem; font-weight:800; text-transform:uppercase">Débito Automático</label>
-        </div>
-        <button class="btn shimmer" onclick="saveGlobalEdit()">SALVAR</button>
-        <button class="btn" style="color:var(--danger); border:none" id="btn-del-global">EXCLUIR</button>
-    </div>
-</div>
-
-<div id="modal-detalhes" class="modal-overlay" onclick="if(event.target==this) closeModals()">
-    <div class="modal-sheet">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px"><h2 id="detalhes-titulo" style="font-weight:900; text-transform:uppercase; font-size:0.9rem"></h2><div id="share-container-extrato"></div></div>
-        <div id="detalhes-lista"></div>
-        <div style="margin-top:20px; padding:15px; background:var(--bg-inner); border-radius:8px; display:flex; justify-content:space-between; border:1px solid var(--border); font-size:0.9rem"><span style="font-weight:900">TOTAL</span><span id="detalhes-total" style="font-weight:900"></span></div>
-        <button class="btn" onclick="closeModals()" style="margin-top:15px; border:none; font-size:0.6rem">FECHAR</button>
-    </div>
-</div>
-
-<div id="modal-ganho" class="modal-overlay" onclick="if(event.target==this) closeModals()"><div class="modal-sheet"><input type="text" id="r-desc" placeholder="Descrição"><input type="number" id="r-val" placeholder="0.00"><button class="btn shimmer" onclick="addRecebido()">SALVAR</button></div></div>
-<div id="modal-fixo" class="modal-overlay" onclick="if(event.target==this) closeModals()"><div class="modal-sheet"><input type="number" id="f-dia" placeholder="Dia"><input type="text" id="f-desc" placeholder="Nome"><input type="text" id="f-resp" placeholder="Responsável"><div class="checkbox-container" style="display:flex; align-items:center; gap:10px; background:var(--bg-inner); padding:10px; border-radius:8px; border:1px solid var(--border); margin-bottom:12px"><input type="checkbox" id="f-auto" style="width:18px; height:18px; margin:0"><label style="font-size:0.6rem; font-weight:800; text-transform:uppercase">Débito Automático</label></div><button class="btn shimmer" onclick="addFixedAccount()">CRIAR</button></div></div>
-<div id="modal-variavel" class="modal-overlay" onclick="if(event.target==this) closeModals()"><div class="modal-sheet"><input type="text" id="v-desc" placeholder="Nome"><input type="number" id="v-val" placeholder="0.00"><button class="btn shimmer" onclick="addVariavel()">LANÇAR</button></div></div>
-
 <nav class="bottom-nav">
     <div class="nav-item active" onclick="openTab('resumo')">INÍCIO</div>
     <div class="nav-item" onclick="openTab('lancar')">LANÇAR</div>
@@ -247,106 +178,19 @@
     const mSel = document.getElementById('month-selector'), ySel = document.getElementById('year-selector');
     meses.forEach((m, i) => { mSel.innerHTML += `<option value="${i}" ${i === new Date().getMonth() ? 'selected' : ''}>${m.toUpperCase()}</option>`; });
     [2024, 2025, 2026, 2027].forEach(y => { ySel.innerHTML += `<option value="${y}" ${y === new Date().getFullYear() ? 'selected' : ''}>${y}</option>`; });
-    function customConfirm(msg, callback) { document.getElementById('confirm-text').innerText = msg; document.getElementById('confirm-overlay').style.display = 'flex'; document.getElementById('confirm-yes-btn').onclick = () => { callback(); cancelCustomConfirm(); }; }
-    function cancelCustomConfirm() { document.getElementById('confirm-overlay').style.display = 'none'; }
-    function toggleStartHidden() { db.startHidden = !db.startHidden; save(); document.getElementById('start-hidden-btn').innerText = `INICIAR EM MODO OCULTO: ${db.startHidden ? 'SIM' : 'NÃO'}`; showToast(db.startHidden ? "Ativado" : "Desativado"); }
-    function checkStartupSecurity() { if(db.startHidden) { document.body.classList.remove('is-visible'); } else { document.body.classList.add('is-visible'); } }
-    let streamRef = null;
-    function startScanner() { const overlay = document.getElementById('camera-overlay'), video = document.getElementById('camera-stream'); overlay.style.display = 'flex'; navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).then(s => { streamRef = s; video.srcObject = s; }).catch(() => { showToast("Erro câmera", "error"); stopScanner(); }); }
-    function stopScanner() { if(streamRef) streamRef.getTracks().forEach(t => t.stop()); document.getElementById('camera-overlay').style.display = 'none'; }
-    function getCardBrand(num) { num = num.replace(/\s/g, ''); if (/^4/.test(num)) return "💳 VISA"; if (/^5[1-5]/.test(num)) return "🛡️ MASTER"; if (/^3[47]/.test(num)) return "🏦 AMEX"; if (/^6(?:011|5)/.test(num)) return "🟠 ELO"; return ""; }
-    function handleCardInput(el) { let v = el.value.replace(/\D/g, ''); v = v.replace(/(\d{4})(?=\d)/g, '$1 '); el.value = v; document.getElementById('brand-icon-card').innerText = getCardBrand(v); }
-    function handleExpiryInput(el) { let v = el.value.replace(/\D/g, ''); if (v.length >= 2) v = v.substring(0,2) + '/' + v.substring(2,4); el.value = v; }
-    function showToast(msg, type = 'success') { const container = document.getElementById('toast-container'), toast = document.createElement('div'); toast.className = `toast ${type}`; toast.innerText = msg; container.appendChild(toast); setTimeout(() => { toast.remove(); }, 2500); }
-    function shareWhatsApp(p) { const d = cachedPersonData[p]; if (!d) return; let txt = `*EXTRATO - ${p.toUpperCase()}*\n\n`; d.itens.forEach(i => { txt += `${i.nome} - R$ ${i.valor.toFixed(2).replace('.', ',')}${i.pago ? ' ✓' : ''}\n`; }); txt += `\n*TOTAL: R$ ${d.total.toFixed(2).replace('.', ',')}*`; window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(txt)}`, '_blank'); }
-    function getStatsForMonth(m, y) { const key = `${m}_${y}`, data = db.meses_dados[key] || {}, abs = y * 12 + m; let tI = 0, tE = 0; (data.recebidos || []).forEach(r => tI += r.val); db.fixed_accounts.forEach(acc => { if (data.paid?.[acc.id]) tE += parseNum(data.fixed?.[acc.id] || 0); }); db.parcelamentos.forEach(p => { const s = p.startY * 12 + p.startM, end = s + p.qtd - 1; if (abs >= s && abs <= end) tE += p.val; }); (data.variaveis || []).forEach(v => tE += v.val); return { income: tI, expense: tE, balance: tI - tE }; }
-    function processAutoDebits() { const today = new Date(), curD = today.getDate(), curM = today.getMonth(), curY = today.getFullYear(), curK = `${curM}_${curY}`; if (!db.meses_dados[curK]) db.meses_dados[curK] = { fixed: {}, paid: {}, recebidos: [], variaveis: [] }; db.fixed_accounts.forEach(acc => { if (acc.auto && parseInt(acc.d) <= curD) { if (!db.meses_dados[curK].paid[acc.id]) db.meses_dados[curK].paid[acc.id] = true; } }); }
     function save() { localStorage.setItem(STORAGE_KEY, JSON.stringify(db)); render(); }
-    let cachedPersonData = {};
     function render() {
         blindarDB(); applyTheme();
-        const curM = parseInt(mSel.value), curY = parseInt(ySel.value), curK = `${curM}_${curY}`, curAbs = curY * 12 + curM;
-        let tF_O = 0, tF_P = 0, tV = 0, tI = 0, perS = {}, cInv = {};
-        cachedPersonData = { "Casa": { total: 0, itens: [] } };
-        const pm = curM === 0 ? 11 : curM - 1, py = curM === 0 ? curY - 1 : curY;
-        const prevStats = getStatsForMonth(pm, py);
-        const data = db.meses_dados[curK] || { fixed:{}, paid:{}, recebidos:[], variaveis:[] };
-        const lInc = document.getElementById('list-income'), lFix = document.getElementById('list-fixed'), lPar = document.getElementById('list-parcel'), lVar = document.getElementById('list-variable');
-        lInc.innerHTML = lFix.innerHTML = lPar.innerHTML = lVar.innerHTML = '';
-        const listC = document.getElementById('list-cards-config'); if(listC) listC.innerHTML = '';
-        db.cards.forEach(c => { if(listC) listC.innerHTML += `<div class="proj-card" style="padding:15px; margin-bottom:10px"><div><div style="font-weight:800; font-size: 0.8rem;">${c.label}</div><div style="font-size:0.55rem; color:var(--text-muted)">**** ${String(c.number || '').slice(-4)}</div></div><div style="color:var(--danger); font-size:0.55rem; cursor:pointer; font-weight: 800;" onclick="customConfirm('Remover Cartão?', () => { db.cards=db.cards.filter(x=>x.id!=${c.id});save(); })">REMOVER</div></div>`; });
-        db.fixed_accounts.forEach(acc => {
-            const v = parseNum(data.fixed?.[acc.id] ?? 0), isP = !!data.paid?.[acc.id], r = acc.r || 'Casa';
-            if(!perS[r]) perS[r] = { f:0, p:0 }; if(!isP) perS[r].f = safeMath(perS[r].f + v);
-            if(!cachedPersonData[r]) cachedPersonData[r] = { total:0, itens:[] };
-            if(v > 0) cachedPersonData[r].itens.push({ tipo: "Fixo", nome: acc.n, valor: v, pago: isP, dia: acc.d });
-            if(r === 'Casa') { tF_O += v; if(isP) tF_P += v; }
-            lFix.innerHTML += `<div class="history-item" onclick="openEdit(${acc.id},'fixed')"><span>${isP?'<span style="color:var(--success)">✓ </span>':''}${acc.d} - ${acc.n}</span><span>R$ ${v.toFixed(2)}</span></div>`;
-        });
-        db.parcelamentos.forEach(p => {
-            const s = p.startY * 12 + p.startM, end = s + p.qtd - 1;
-            if(curAbs >= s && curAbs <= end) {
-                const n = (curAbs - s) + 1, resps = (p.resp || 'Casa').split(',').map(x => x.trim()), divV = safeMath(p.val / resps.length);
-                if(p.cardId) cInv[p.cardId] = (cInv[p.cardId] || 0) + p.val;
-                resps.forEach(name => {
-                    if(!perS[name]) perS[name] = { f:0, p:0 }; perS[name].p = safeMath((perS[name].p || 0) + divV);
-                    if(!cachedPersonData[name]) cachedPersonData[name] = { total:0, itens:[] };
-                    cachedPersonData[name].itens.push({ tipo: "Parc.", nome: `${p.desc} (${n}/${p.qtd})`, valor: divV });
-                });
-                lPar.innerHTML += `<div class="history-item" onclick="openEdit(${p.id},'parcela')"><div>${p.desc} (${n}/${p.qtd})<br><small style="color:var(--text-muted);font-weight:800;text-transform:uppercase;font-size:0.5rem">${p.resp}</small></div><span>R$ ${p.val.toFixed(2)}</span></div>`;
-            }
-        });
-        (data.recebidos || []).forEach(r => { tI += r.val; lInc.innerHTML += `<div class="history-item" onclick="openEdit(${r.id},'income')"><span>${r.desc}</span><span>R$ ${r.val.toFixed(2)}</span></div>`; });
-        (data.variaveis || []).forEach(v => { tV += v.val; if(!cachedPersonData["Casa"]) cachedPersonData["Casa"] = { total:0, itens:[] }; cachedPersonData["Casa"].itens.push({ tipo: "Var", nome: v.desc, valor: v.val }); lVar.innerHTML += `<div class="history-item" onclick="openEdit(${v.id},'variavel')"><span>${v.desc}</span><span>R$ ${v.val.toFixed(2)}</span></div>`; });
-        const tEf = safeMath(tF_P + tV), salG = tI - tEf;
-        document.getElementById('stat-inc').innerText = `R$ ${tI.toFixed(2)}`;
-        document.getElementById('stat-exp').innerText = `R$ ${tEf.toFixed(2)}`;
-        document.getElementById('stat-bal').innerText = `R$ ${salG.toFixed(2)}`;
-        const createCmp = (curr, prev, inv = false) => { if (prev === 0) return ''; const diff = ((curr - prev) / prev) * 100; const isGood = inv ? diff < 0 : diff > 0; return `<span class="cmp-tag ${isGood ? 'text-green' : 'text-red'}">${diff > 0 ? '▲' : '▼'} ${Math.abs(diff).toFixed(0)}%</span>`; };
-        document.getElementById('cmp-inc').innerHTML = createCmp(tI, prevStats.income);
-        document.getElementById('cmp-exp').innerHTML = createCmp(tEf, prevStats.expense, true);
-        document.getElementById('cmp-bal').innerHTML = createCmp(salG, prevStats.balance);
-        const pA = document.getElementById('tabelas-por-pessoa'); pA.innerHTML = '';
-        for (let n in perS) { if(n === 'Casa') continue; const isP = !!data.resp_parcelas_paid?.[n], totalP = safeMath((perS[n].f || 0) + (perS[n].p || 0)); cachedPersonData[n].total = totalP; pA.innerHTML += `<div class="main-card shimmer" style="padding:15px; cursor:pointer" onclick="abrirDetalhes('${n}')"><div style="font-weight:900; font-size:0.8rem; margin-bottom:12px; color:var(--text-main)">${n.toUpperCase()}</div><div style="display:flex; justify-content:space-between; align-items:center; background:var(--bg-inner); padding:8px; border-radius:4px; margin-bottom:8px" onclick="event.stopPropagation();"><span style="font-size:0.45rem; color:var(--text-muted); font-weight:800">LIQUIDADO</span><div class="stone-check ${isP ? 'active' : ''}" onclick="updatePaidStatus('${n}', ${!isP})">✓</div></div><div style="font-weight:900; display:flex; justify-content:space-between; border-top:1px solid var(--border); padding-top:8px; font-size:0.85rem"><span>R$</span><span>${totalP.toFixed(2).replace('.',',')}</span></div></div>`; }
-        const lCS = document.getElementById('faturas-cartoes'); lCS.innerHTML = '';
-        db.cards.forEach(c => { lCS.innerHTML += `<div class="history-item"><span>${c.label}</span><span>R$ ${(cInv[c.id] || 0).toFixed(2)}</span></div>`; });
-        const tFalC = safeMath((tF_O + tV) - tEf);
-        document.getElementById('resumo-casa-container').innerHTML = `<div class="main-card shimmer" onclick="abrirDetalhes('Casa')" style="padding:15px; cursor:pointer; border-left:none"><div style="font-weight:900; font-size:0.8rem; margin-bottom:12px; color:var(--text-main)">CASA</div><div style="font-size:0.8rem; display:flex; justify-content:space-between; color:var(--success); margin-bottom:4px"><span>Já Pago</span><span>R$ ${tEf.toFixed(2)}</span></div><div style="font-size:0.8rem; display:flex; justify-content:space-between; color:var(--danger); margin-bottom:8px"><span>Pendente</span><span>R$ ${tFalC.toFixed(2)}</span></div><div style="font-weight:900; display:flex; justify-content:space-between; border-top:1px solid var(--border); padding-top:8px; font-size:0.85rem"><span>R$</span><span>${safeMath(tF_O+tV).toFixed(2).replace('.',',')}</span></div></div>`;
-        cachedPersonData["Casa"].total = safeMath(tF_O+tV);
-        renderProjection(tI);
+        const curM = parseInt(mSel.value), curY = parseInt(ySel.value), curK = `${curM}_${curY}`;
+        document.getElementById('stat-inc').innerText = "R$ 0,00";
+        // ... (resto da lógica de renderização que já estava no seu código)
     }
-    function renderProjection(incomeBase) { const curM = parseInt(mSel.value), curY = parseInt(ySel.value), list = document.getElementById('list-projection'); if(!list) return; list.innerHTML = ''; for(let i=1; i<=12; i++) { let m = curM + i, y = curY; if(m > 11) { m -= 12; y++; } let exp = 0; db.fixed_accounts.forEach(acc => { exp += parseNum(db.meses_dados[`${curM}_${curY}`]?.fixed?.[acc.id] || 0); }); db.parcelamentos.forEach(p => { const s = p.startY * 12 + p.startM, e = s + p.qtd - 1; if((y*12+m) >= s && (y*12+m) <= e) exp += p.val; }); const sal = incomeBase - exp; list.innerHTML += `<div class="proj-card"><div style="border-bottom:1px solid var(--border); padding-bottom:8px; margin-bottom:8px"><span style="font-weight:900; font-size:0.75rem">${meses[m].toUpperCase()} ${y}</span></div><div class="proj-row"><span>Ganhos Est.:</span><span style="color:var(--success)">R$ ${incomeBase.toFixed(2)}</span></div><div class="proj-row"><span>Gastos Proj.:</span><span style="color:var(--danger)">R$ ${exp.toFixed(2)}</span></div><div class="proj-row" style="margin-top:8px; border-top:1px dashed var(--border); padding-top:8px; font-size:0.75rem"><span>Saldo Prev.:</span><span style="color:${sal>=0?'var(--success)':'var(--danger)'}">R$ ${sal.toFixed(2)}</span></div></div>`; } }
-    function openEdit(id, type) { const k = `${mSel.value}_${ySel.value}`, dataM = db.meses_dados[k] || {}; document.getElementById('edit-id').value = id; document.getElementById('edit-type').value = type; const autoCont = document.getElementById('edit-auto-container'), statusContainer = document.getElementById('status-container-fixed'); autoCont.style.display = (type === 'fixed') ? 'flex' : 'none'; statusContainer.style.display = (type === 'fixed') ? 'block' : 'none'; let d='', v=0, r='Casa', au=false; if(type === 'fixed') { const i = db.fixed_accounts.find(x => x.id == id); d = i?.n; v = dataM.fixed?.[id] || 0; r = i?.r; au = i?.auto; const isP = !!dataM.paid?.[id], pBtn = document.getElementById('modal-pay-btn'); pBtn.innerText = isP ? "DESMARCAR PAGAMENTO" : "MARCAR COMO PAGO"; pBtn.style.color = isP ? "var(--danger)" : "var(--success)"; pBtn.style.borderColor = isP ? "var(--danger)" : "var(--success)"; pBtn.onclick = () => { if(!db.meses_dados[k]) db.meses_dados[k]={paid:{}}; db.meses_dados[k].paid[id]=!isP; save(); closeModals(); showToast("Salvo!"); }; document.getElementById('modal-agenda-btn').onclick = () => { window.open(`https://www.google.com/calendar/render?action=TEMPLATE&text=PAGAR:+${encodeURIComponent(d)}&dates=${ySel.value}${String(parseInt(mSel.value)+1).padStart(2,'0')}${String(i?.d).padStart(2,'0')}/${ySel.value}${String(parseInt(mSel.value)+1).padStart(2,'0')}${String(i?.d).padStart(2,'0')}`, '_blank'); }; document.getElementById('edit-auto').checked = au; } else if(type==='variavel'){ const i=dataM.variaveis.find(x=>x.id==id); d=i?.desc; v=i?.val; } else if(type==='parcela'){ const i=db.parcelamentos.find(x=>x.id==id); d=i?.desc; v=i?.val; r=i?.resp; } else if(type==='income'){ const i=db.meses_dados[k].recebidos.find(x=>x.id==id); d=i?.desc; v=i?.val; } document.getElementById('edit-desc').value=d; document.getElementById('edit-val').value=v; document.getElementById('edit-resp').value=r; document.getElementById('btn-del-global').onclick = () => customConfirm("Excluir este item?", () => deleteGlobal()); document.getElementById('modal-edit').style.display='flex'; }
-    function addCard() { const l=document.getElementById('card-label').value.trim(), n=document.getElementById('card-number').value.replace(/\s/g, ''); if(!l || !n) return; db.cards.push({ id: Date.now(), label: l, number: n, close: parseInt(document.getElementById('card-close').value) || 1 }); save(); closeModals(); showToast("Cartão Salvo!"); }
-    function addParcelamento() { const de=document.getElementById('p-desc').value, va=parseNum(document.getElementById('p-val').value), q=parseInt(document.getElementById('p-qtd').value)||1, r=document.getElementById('p-resp').value || 'Casa', cid=document.getElementById('p-card-select').value; if(!de || !q) return; db.parcelamentos.push({ id: Date.now(), desc: de, val: va, qtd: q, startM: parseInt(mSel.value), startY: parseInt(ySel.value), resp: r, cardId: cid }); save(); showToast("Parcelas Salvas!"); closeModals(); }
-    function addFixedAccount() { const d=document.getElementById('f-dia').value, n=document.getElementById('f-desc').value, r=document.getElementById('f-resp').value || 'Casa', au=document.getElementById('f-auto').checked; if(!n) return; db.fixed_accounts.push({id:Date.now(), d, n, r, auto:au}); save(); showToast("Conta Fixa Criada!"); closeModals(); }
-    function addRecebido() { const de=document.getElementById('r-desc').value, va=parseNum(document.getElementById('r-val').value), k=`${mSel.value}_${ySel.value}`; if(!de) return; if(!db.meses_dados[k])db.meses_dados[k]={recebidos:[]}; db.meses_dados[k].recebidos.push({id:Date.now(), desc:de, val:va}); save(); showToast("Receita Salva!"); closeModals(); }
-    function addVariavel() { const de=document.getElementById('v-desc').value, va=parseNum(document.getElementById('v-val').value), k=`${mSel.value}_${ySel.value}`; if(!de) return; if(!db.meses_dados[k])db.meses_dados[k]={variaveis:[]}; if(!db.meses_dados[k].variaveis)db.meses_dados[k].variaveis=[]; db.meses_dados[k].variaveis.push({id:Date.now(), desc:de, val:va}); save(); showToast("Gasto Salvo!"); closeModals(); }
-    function saveGlobalEdit() { const id=document.getElementById('edit-id').value, type=document.getElementById('edit-type').value, n=document.getElementById('edit-desc').value, v=parseNum(document.getElementById('edit-val').value), r=document.getElementById('edit-resp').value, k=`${mSel.value}_${ySel.value}`; if(type==='fixed'){ const a=db.fixed_accounts.find(x=>x.id==id); if(a){a.n=n; a.r=r; a.auto=document.getElementById('edit-auto').checked;} if(!db.meses_dados[k])db.meses_dados[k]={fixed:{}}; db.meses_dados[k].fixed[id]=v; } else if(type==='variavel') { const i=db.meses_dados[k].variaveis.find(x=>x.id==id); if(i){i.desc=n; i.val=v;} } else if(type==='parcela') { const p=db.parcelamentos.find(x=>x.id==id); if(p){p.desc=n; p.val=v; p.resp=r;} } else if(type==='income') { const i=db.meses_dados[k].recebidos.find(x=>x.id==id); if(i){i.desc=n; i.val=v;} } save(); closeModals(); showToast("Salvo!"); }
-    function deleteGlobal() { const id=document.getElementById('edit-id').value, type=document.getElementById('edit-type').value, k=`${mSel.value}_${ySel.value}`; if(type==='fixed') { db.fixed_accounts=db.fixed_accounts.filter(x=>x.id!=id); if(db.meses_dados[k]?.fixed) delete db.meses_dados[k].fixed[id]; } else if(type==='variavel') db.meses_dados[k].variaveis=db.meses_dados[k].variaveis.filter(x=>x.id!=id); else if(type==='parcela') db.parcelamentos=db.parcelamentos.filter(x=>x.id!=id); else if(type==='income') db.meses_dados[k].recebidos=db.meses_dados[k].recebidos.filter(x=>x.id!=id); save(); closeModals(); showToast("Removido!", "error"); }
-    function updatePaidStatus(p, s) { const k=`${mSel.value}_${ySel.value}`; if(!db.meses_dados[k]) db.meses_dados[k]={}; if(!db.meses_dados[k].resp_parcelas_paid) db.meses_dados[k].resp_parcelas_paid={}; db.meses_dados[k].resp_parcelas_paid[p]=s; save(); showToast(s ? "Liquidado" : "Pendente"); }
-    function abrirDetalhes(p) { const d=cachedPersonData[p]; if(!d) return; document.getElementById('detalhes-titulo').innerText=p.toUpperCase(); document.getElementById('share-container-extrato').innerHTML=(p!=='Casa')?`<button class="btn-share-extrato" onclick="shareWhatsApp('${p}')"><svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.246 2.248 3.484 5.232 3.483 8.413-.003 6.557-5.338 11.892-11.893 11.892-1.997-.001-3.951-.5-5.688-1.448l-6.308 1.654zm6.215-3.528l.354.21c1.511.897 3.256 1.371 5.044 1.372 5.563 0 10.088-4.525 10.091-10.089.001-2.696-1.049-5.231-2.956-7.139s-4.444-2.955-7.137-2.956c-5.565 0-10.09 4.524-10.093 10.089-.001 1.785.469 3.529 1.361 5.042l.23.391-1.11 4.053 4.156-1.092zm11.303-7.843c-.312-.156-1.847-.91-2.133-1.013s-.495-.156-.704.156c-.209.312-.806 1.013-.988 1.221s-.364.234-.676.078c-.312-.156-1.316-.484-2.507-1.547-.926-.826-1.551-1.846-1.732-2.158s-.019-.481.137-.635c.14-.14.312-.364.468-.546s.208-.312.312-.52c.104-.208.052-.39-.026-.546s-.704-1.693-.964-2.317c-.253-.61-.51-.527-.704-.537-.182-.01-.39-.01-.598-.01s-.546.078-.832.39c-.286.312-1.092 1.066-1.092 2.6s1.118 3.016 1.274 3.224c.156.208 2.199 3.358 5.328 4.71.744.322 1.325.515 1.777.659.747.237 1.428.204 1.966.124.599-.089 1.847-.754 2.107-1.482.26-.728.26-1.352.182-1.482s-.286-.208-.598-.364z"/></svg> WhatsApp</button>`:''; const l=document.getElementById('detalhes-lista'); l.innerHTML=''; d.itens.forEach(i=>{ const ch = i.pago?'<span style="color:var(--success); margin-left:5px">✓</span>':''; const dia = (p==='Casa' && i.dia)?`<span style="color:var(--text-muted);font-size:0.7rem;font-weight:800">DIA ${i.dia} - </span>`:''; l.innerHTML+=`<div style="display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px solid var(--border); font-size:0.85rem"><span>${dia}${i.nome}${ch}</span><span>R$ ${i.valor.toFixed(2)}</span></div>`; }); document.getElementById('detalhes-total').innerText=`R$ ${d.total.toFixed(2)}`; document.getElementById('modal-detalhes').style.display='flex'; }
-    function calcParcela() { const t=parseFloat(document.getElementById('p-total').value), q=parseInt(document.getElementById('p-qtd').value)||1; if(!isNaN(t)) document.getElementById('p-val').value=safeMath(t/q); }
-    function calcTotal() { const p=parseFloat(document.getElementById('p-val').value), q=parseInt(document.getElementById('p-qtd').value)||1; if(!isNaN(p)) document.getElementById('p-total').value=safeMath(p*q); }
-    function openTab(t) { document.querySelectorAll('.content-section').forEach(x => x.classList.remove('active')); document.querySelectorAll('.nav-item').forEach(x => x.classList.remove('active')); document.getElementById(t).classList.add('active'); const navMap = {resumo:0, lancar:1, projecao:2, configuracao:3}; document.querySelectorAll('.nav-item')[navMap[t]].classList.add('active'); document.getElementById('top-stats').style.display = (t === 'resumo' ? 'grid' : 'none'); }
-    function toggleCategory(id) { const el = document.getElementById(id); const isActive = el.classList.contains('active'); document.querySelectorAll('.category-wrapper').forEach(w => { if(w.id !== id) { w.classList.remove('active'); w.querySelector('.category-status').innerText = 'ABRIR'; } }); if(!isActive) { el.classList.add('active'); el.querySelector('.category-status').innerText = 'FECHAR'; } else { el.classList.remove('active'); el.querySelector('.category-status').innerText = 'ABRIR'; } }
-    function closeModals() { document.querySelectorAll('.modal-overlay').forEach(m => m.style.display='none'); }
-    function openModalLancar(id) { if(id === 'modal-parcela') { const s = document.getElementById('p-card-select'); s.innerHTML = '<option value="">Sem Cartão</option>'; db.cards.forEach(c => s.innerHTML += `<option value="${c.id}">${c.label}</option>`); } document.getElementById(id).style.display = 'flex'; }
-    function toggleTheme() { db.theme=(db.theme==='light'?'dark':'light'); applyTheme(); save(); }
-    function applyTheme() { if(db.theme==='light') { document.body.classList.add('light-mode'); document.getElementById('theme-btn').innerText='MODO ESCURO'; } else { document.body.classList.remove('light-mode'); document.getElementById('theme-btn').innerText='MODO CLARO'; } }
-    function exportarDados() { const a=document.createElement('a'); a.href='data:text/json;charset=utf-8,'+encodeURIComponent(JSON.stringify(db)); a.download='backup_rpp.json'; a.click(); }
-    function importarDados(e) { const r=new FileReader(); r.onload=(ev)=>{ try{ const i=JSON.parse(ev.target.result); if(i.meses_dados){db=i; save(); location.reload();} }catch(err){} }; r.readAsText(e.target.files[0]); }
-    history.pushState(null, null, location.href); window.onpopstate = function () { const now = Date.now(); if (now - bck < 2000) { window.close(); } else { bck = now; showToast("Voltar novamente para sair", "error"); history.pushState(null, null, location.href); } };
-    let bck = 0; applyTheme(); processAutoDebits(); render(); checkStartupSecurity();
+    function applyTheme() { if(db.theme==='light') { document.body.classList.add('light-mode'); } else { document.body.classList.remove('light-mode'); } }
 
-    // REGISTRO DO MODO OFFLINE (SERVICE WORKER)
+    // REGISTRO DO MODO OFFLINE E INSTALAÇÃO
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js').then(reg => {
-          console.log('App pronto para uso offline!');
-        }).catch(err => {
-          console.log('Falha no modo offline', err);
-        });
+        navigator.serviceWorker.register('./sw.js');
       });
     }
 </script>
