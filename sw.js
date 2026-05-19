@@ -1,4 +1,4 @@
-const CACHE_NAME = 'rpp-v1';
+const CACHE_NAME = 'rpp-v48';
 const assets = ['./', './index.html', './manifest.json'];
 
 self.addEventListener('install', e => {
