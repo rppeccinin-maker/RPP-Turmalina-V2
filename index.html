@@ -437,6 +437,14 @@
     
     history.pushState(null, null, location.href); window.onpopstate = function () { const now = Date.now(); if (now - bck < 2000) { window.close(); } else { bck = now; showToast("Voltar novamente para sair", "error"); history.pushState(null, null, location.href); } };
     let bck = 0; applyTheme(); processAutoDebits(); render(); checkStartupSecurity();
+    // Adicione isso na última linha antes do </script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js')
+      .then(reg => console.log('Service Worker registrado!'))
+      .catch(err => console.log('Erro ao registrar SW', err));
+  });
+}
 </script>
 </body>
 </html>
